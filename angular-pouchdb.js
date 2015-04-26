@@ -1,3 +1,4 @@
+(function(window, angular, undefined) {
 'use strict';
 
 angular.module('pouchdb', [])
@@ -19,9 +20,9 @@ angular.module('pouchdb', [])
     'compact',
     'revsDiff'
   ])
-  .provider('pouchDB', function(POUCHDB_DEFAULT_METHODS) {
+  .provider('pouchDB', ["POUCHDB_DEFAULT_METHODS", function(POUCHDB_DEFAULT_METHODS) {
     this.methods = POUCHDB_DEFAULT_METHODS;
-    this.$get = function($q, $window, $rootScope) {
+    this.$get = ["$q", "$window", "$rootScope", function($q, $window, $rootScope) {
       var methods = this.methods;
       function qify(fn) {
         return function() {
@@ -69,5 +70,6 @@ angular.module('pouchdb', [])
 
         return api;
       };
-    };
-  });
+    }];
+  }]);
+})(window, window.angular);
