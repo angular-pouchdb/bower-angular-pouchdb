@@ -66,7 +66,8 @@ angular.module('pouchdb', [])
           var wrapFunction = methods[method];
 
           if (!angular.isString(wrapFunction)) {
-            return wrapMethods(db, wrapFunction, method);
+            wrapMethods(db, wrapFunction, method);
+            continue;
           }
 
           wrapFunction = pouchDBDecorators[wrapFunction];
